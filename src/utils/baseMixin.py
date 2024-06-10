@@ -22,12 +22,14 @@ class BaseMixin:
             ]
             Return      : dict
         """
+        print(args)
         response        = requests.post(
             self.__API_URL__,
             json        = args
         )
-        print(response)
-        return response.json()
+        print(response.text)
+        return {}
+        # return response.json()
 
     @classmethod
     def create(self, args) -> dict:
