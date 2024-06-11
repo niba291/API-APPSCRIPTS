@@ -22,7 +22,7 @@ def app_scripts_googlesheet_get(id : str = "") -> dict:
             "schema"    : request.json
         }
     })
-    return jsonify(response), HTTP_200_OK if not ("error" in response) else HTTP_400_BAD_REQUEST
+    return jsonify(response), HTTP_200_OK if ("error" in response) and not response["error"] else HTTP_400_BAD_REQUEST
     
 @app_scripts.route("/googlesheet/create/<string:id>", methods = ["POST"])
 def app_scripts_googlesheet_add(id : str = "") -> dict:
@@ -38,7 +38,7 @@ def app_scripts_googlesheet_add(id : str = "") -> dict:
             "schema"    : request.json
         }
     })
-    return jsonify(response), HTTP_200_OK if not ("error" in response) else HTTP_400_BAD_REQUEST
+    return jsonify(response), HTTP_200_OK if ("error" in response) and not response["error"] else HTTP_400_BAD_REQUEST
 
 @app_scripts.route("/googlesheet/update/<string:id>", methods = ["POST"])
 def app_scripts_googlesheet_update(id : str = "") -> dict:
@@ -54,7 +54,7 @@ def app_scripts_googlesheet_update(id : str = "") -> dict:
             "schema"    : request.json
         }
     })
-    return jsonify(response), HTTP_200_OK if not ("error" in response) else HTTP_400_BAD_REQUEST
+    return jsonify(response), HTTP_200_OK if ("error" in response) and not response["error"] else HTTP_400_BAD_REQUEST
 
 @app_scripts.route("/googlesheet/delete/<string:id>", methods = ["POST"])
 def app_scripts_googlesheet_delete(id : str = "") -> dict:
@@ -70,7 +70,7 @@ def app_scripts_googlesheet_delete(id : str = "") -> dict:
             "schema"    : request.json
         }
     })
-    return jsonify(response), HTTP_200_OK if not ("error" in response) else HTTP_400_BAD_REQUEST
+    return jsonify(response), HTTP_200_OK if ("error" in response) and not response["error"] else HTTP_400_BAD_REQUEST
 
 @app_scripts.route("/googledrive/<string:id>", methods = ["POST"])
 def app_scripts_googledrive_get(id : str = "") -> dict:
@@ -85,4 +85,4 @@ def app_scripts_googledrive_get(id : str = "") -> dict:
             "id"        : id,
         }
     })
-    return jsonify(response), HTTP_200_OK if not ("error" in response) else HTTP_400_BAD_REQUEST
+    return jsonify(response), HTTP_200_OK if ("error" in response) and not response["error"] else HTTP_400_BAD_REQUEST
