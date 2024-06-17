@@ -6,16 +6,16 @@ from flask                                                  import Blueprint, js
 from src.api.APPSCRIPTS.models.AppScriptsModel              import AppScripts
 # BLUEPRINT =====================================================================================================================
 app_scripts                                                 = Blueprint("app_scripts", __name__)
+# VARIABLES =====================================================================================================================
+HOST                                                        = ""
 # MIDDLEWARE ====================================================================================================================
-TOKEN_API                                                   = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkYmRlOTQ1LThiNDMtNDhkNi1hYjhhLTlhODQ1ZTBhM2VkNCIsInJvbCI6W10sIm1vZHVsZXMiOltdfQ.cuA_n0p9LwVaBmUN0-8HjegZuuTIISCVkNvSXvq8GEU"
-
 @app_scripts.before_request
 def before_request():
-    host                                                    = request.headers.get("Host", "").split(":")[0]
-    host                                                    = "localhost" if host == "127.0.0.1" else host.split(".")[0]
+    HOST                                                    = request.headers.get("Host", "").split(":")[0]
+    HOST                                                    = "localhost" if HOST == "127.0.0.1" else HOST.split(".")[0]
     token                                                   = request.cookies.get("x-access-tokens", "")
     try:
-        print(jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"]))
+        jwtDecode                                           = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])
     except jwt.exceptions.InvalidSignatureError:
         return jsonify({
             "error"     : True,
@@ -30,7 +30,7 @@ def app_scripts_googlesheet_get(id : str = "") -> dict:
         Return      : dict
     """
     response            = AppScripts().request({
-        "token"         : TOKEN_API,
+        "token"         : HOST,
         "action"        : "get",
         "data"          : {
             "id"        : id,
@@ -47,7 +47,7 @@ def app_scripts_googlesheet_add(id : str = "") -> dict:
         Return      : dict
     """
     response            = AppScripts().request({
-        "token"         : TOKEN_API,
+        "token"         : HOST,
         "action"        : "create",
         "data"          : {
             "id"        : id,
@@ -63,7 +63,7 @@ def app_scripts_googlesheet_update(id : str = "") -> dict:
         Return      : dict
     """
     response            = AppScripts().request({
-        "token"         : TOKEN_API,
+        "token"         : HOST,
         "action"        : "update",
         "data"          : {
             "id"        : id,
@@ -79,7 +79,7 @@ def app_scripts_googlesheet_delete(id : str = "") -> dict:
         Return      : dict
     """
     response            = AppScripts().request({
-        "token"         : TOKEN_API,
+        "token"         : HOST,
         "action"        : "remove",
         "data"          : {
             "id"        : id,
@@ -95,7 +95,7 @@ def app_scripts_googledrive_get(id : str = "") -> dict:
         Return      : dict
     """
     response            = AppScripts().request({
-        "token"         : TOKEN_API,
+        "token"         : HOST,
         "action"        : "getJsonFile",
         "data"          : {
             "id"        : id,
