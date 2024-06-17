@@ -1,0 +1,25 @@
+/*
+## API APPSCRIPTS
+
+-----------------------------
+
+### GET & FILTER
+
+This endpoint allows you to get and filter data from a Google spreadsheet using the provided spreadsheet ID. The request is made using the GET method, and an empty JSON body with the "NAME_SHEET" field is passed
+*/
+POST /googlesheet/get/{{SPREADSHEET_ID_GOOGLE}}
+Content-Type: application/json
+
+{
+  "PRODUCTOS": {}
+}
+
+HTTP/1.1 400  - Bad Request
+content-type: application/json
+access-control-allow-origin: *
+x-cloud-trace-context: 277db404782f3ea0c833041352e9a26f;o=1
+date: Thu, 13 Jun 2024 18:15:13 GMT
+server: Google Frontend
+content-length: 566
+alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+connection: close

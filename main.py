@@ -3,11 +3,14 @@
 from flask                                                  import Flask
 from flask_cors                                             import CORS
 
+from src.utils.env                                          import ENV
 from src.api.APPSCRIPTS.controllers.AppScriptsController    import app_scripts
 from src.api.PAYMENT_KHIPU.controllers.KhipuController      import payment_khipu
-# APP ============================================================================================================================
+# APP ===========================================================================================================================
 app                                                         = Flask(__name__)
 app.json.sort_keys                                          = False
+# CONFIG ========================================================================================================================
+app.config["SECRET_KEY"]                                    = ENV["SECRET_KEY"]
 
 CORS(app)
 
