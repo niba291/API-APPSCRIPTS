@@ -14,12 +14,9 @@ Content-Type: application/json
   "PRODUCTOS": {}
 }
 
-HTTP/1.1 400  - Bad Request
-content-type: application/json
-access-control-allow-origin: *
-x-cloud-trace-context: 277db404782f3ea0c833041352e9a26f;o=1
-date: Thu, 13 Jun 2024 18:15:13 GMT
-server: Google Frontend
-content-length: 566
+HTTP/1.1 404  - Not Found
+content-length: 272
+content-type: text/html; charset=UTF-8
+date: Mon, 17 Jun 2024 22:05:44 GMT
 alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
 connection: close
